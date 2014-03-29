@@ -28,8 +28,8 @@ public class watch extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String videoId = request.getParameter("v");
 		if (videoId == null) {
-			// Use to and from to get the playlist from the database
-			String to = request.getParameter("to");
+			// Use from to get the playlist from the database
+			int to = (int)request.getSession().getAttribute("userId");
 			String from = request.getParameter("from");
 			// Get the first video from the playlist and assign it to videoId
 			videoId = "jR4lLJu_-wE";
