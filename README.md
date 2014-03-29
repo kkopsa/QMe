@@ -3,7 +3,7 @@
 
 <h2>YouTube Video Queue Site</h2>
 
-<u>Known Dependencies:</u>  
+**Known Dependencies:**  
 -Facebook4j-core-2.0.5  
 -jackson-annotations-2.2.3  
 -jackson-core-2.2.3  
