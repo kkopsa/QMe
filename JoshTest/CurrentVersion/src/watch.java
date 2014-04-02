@@ -1,6 +1,9 @@
 
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,7 +38,16 @@ public class watch extends HttpServlet {
 			videoId = "jR4lLJu_-wE";
 			// Create a list to send to the jsp file
 		}
+		List<String> friends = new ArrayList<String>();
+		friends.add("Kevin Kopsa");
+		friends.add("Taylor Skinner");
+		friends.add("Andrew Fry");
+		friends.add("Dillon Chamberlin");
+		friends.add("Bradley Graham");
+		friends.add("Stephen Landry");
+		
 		request.setAttribute("v", videoId);
+		request.setAttribute("friends", friends);
 		request.getRequestDispatcher("watch.jsp").forward(request, response);
 	}
 }

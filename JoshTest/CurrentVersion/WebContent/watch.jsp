@@ -1,14 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=US-ASCII"
     pageEncoding="US-ASCII"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <html>
 <head>
 	<title>Watch | QMe</title>
 	<link rel="stylesheet" href="style/index.css" />
 	<link rel="stylesheet" href="style/playlist.css" />
+	<link rel="stylesheet" href="style/chosen.css" />
 	<script src="JS/jquery.min.js" type="text/javascript"></script>
 	<script src="JS/search.js" type="text/javascript"></script>
 	<script src="JS/controls.js" type="text/javascript"></script>
+	<script src="JS/chosen.jquery.js" type="text/javascript"></script>
+	<script>
+		$(document).ready(function() {
+			if ($("#player").children("nav").eq(0).children("ul").eq(0).children().length == 0) {
+				$("#player").addClass("empty");
+			}
+		});
+	</script>
 </head>
 <body>
 	<nav>
@@ -41,6 +52,15 @@
 				</ul>
 			</nav>
 		</div>
+		<select data-placeholder="Search Facebook Friends" style="width: 500px;" multiple class="chosen-select" tabindex="8">
+			<option value=""></option>
+			<c:forEach items="${friends}" var="friend">
+				<option>${friend}</option>
+			</c:forEach>
+		</select>
+		<script type="text/javascript">
+			$('.chosen-select').chosen();
+		</script>
 	</main>
 </body>
 </html>
