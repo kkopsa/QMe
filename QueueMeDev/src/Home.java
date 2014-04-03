@@ -17,7 +17,7 @@ import facebook4j.ResponseList;
 /**
  * Servlet implementation class LoadHome
  */
-@WebServlet("/LoadHome")
+@WebServlet("/Home")
 public class Home extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -36,7 +36,7 @@ public class Home extends HttpServlet {
 		
 		QueueDatabase qdb = new QueueDatabase();	
 		
-		ArrayList<Playlist> playlists = new ArrayList<Playlist>();
+//		ArrayList<Playlist> playlists = new ArrayList<Playlist>();
 		
 		int userID = Integer.parseInt((String) request.getSession().getAttribute("userId"));
 		int friendID = 1076890682;

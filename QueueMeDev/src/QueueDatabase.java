@@ -2,10 +2,10 @@ import java.sql.*;
 
 public class QueueDatabase {
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	static final String DB_URL = "jdbc:mysql://localhost/queue_me_dev";
+	static final String DB_URL = "jdbc:mysql://localhost/qme";
 
-	static final String USER = "queue_admin";
-	static final String PASS = "googleorbust";
+	static final String USER = "root";
+	static final String PASS = "";
 
 	Connection conn = null;
 
