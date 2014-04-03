@@ -68,7 +68,6 @@ main div:after {
    clear: both;
 }
 
-
 main div img {
 	float: left;
 	padding-right: 15px;
@@ -77,4 +76,15 @@ main div img {
 main div a {
 	color: black;
 	text-decoration: none;
+}
+
+main .tile {
+	width: 33%;
+	float: left;
+	padding: 5px;
+	border: none;
+}
+
+main .tile img {
+	width: 100%;
 }
