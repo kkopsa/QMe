@@ -9,12 +9,10 @@
 </head>
 <body>
 	<nav>
-		<p></p>		
+		<a href="LogIn" style="float: right; display: block; height: 100%"><img src="images/fb-login.png" style="height: 100%" /></a>
 	</nav>
 	<main>
 	<div>
-		<br /><br /><br /><br />
-		<a href="LogIn">Click here to login with Facebook</a>
 	</div>
 	</main>
 </body>
