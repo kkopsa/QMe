@@ -54,7 +54,7 @@ public class CallBack extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		response.sendRedirect("/QueueMeDev/Home");
+		response.sendRedirect("/QMe/Home");
 		//new LoadHome().doGet(request, response);
 	}
 
