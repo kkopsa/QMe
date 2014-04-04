@@ -52,12 +52,15 @@
 				</ul>
 			</nav>
 		</div>
-		<select data-placeholder="Search Facebook Friends" style="width: 500px;" multiple class="chosen-select" tabindex="8">
-			<option value=""></option>
-			<c:forEach items="${friends}" var="friend">
-				<option>${friend}</option>
-			</c:forEach>
-		</select>
+		<form method="post" action="">
+			<select name="friends" data-placeholder="Search Facebook Friends" style="width: 500px;" multiple class="chosen-select" tabindex="8">
+				<option value=""></option>
+				<c:forEach items="${friends}" var="friend">
+					<option value="${friend.id}">${friend.name}</option>
+				</c:forEach>
+			</select>
+			<button type="submit">Send Video</button>
+		</form>
 		<script type="text/javascript">
 			$('.chosen-select').chosen();
 		</script>

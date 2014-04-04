@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import facebook4j.Friend;
+import facebook4j.ResponseList;
+
 /**
  * Servlet implementation class watch
  */
@@ -38,13 +41,8 @@ public class watch extends HttpServlet {
 			videoId = "jR4lLJu_-wE";
 			// Create a list to send to the jsp file
 		}
-		List<String> friends = new ArrayList<String>();
-		friends.add("Kevin Kopsa");
-		friends.add("Taylor Skinner");
-		friends.add("Andrew Fry");
-		friends.add("Dillon Chamberlin");
-		friends.add("Bradley Graham");
-		friends.add("Stephen Landry");
+		
+		ResponseList<Friend> friends = (ResponseList<Friend>)request.getSession().getAttribute("friends");
 		
 		request.setAttribute("v", videoId);
 		request.setAttribute("friends", friends);

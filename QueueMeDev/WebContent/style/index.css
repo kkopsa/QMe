@@ -88,3 +88,33 @@ main .tile {
 main .tile img {
 	width: 100%;
 }
+
+button {
+	color: white;
+	background-color: rgb(94, 122, 185);
+  	background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(20%, rgb(124, 152, 215)), color-stop(90%, rgb(94, 122, 185)));
+  	background-image: -webkit-linear-gradient(rgb(124, 152, 215) 20%, rgb(94, 122, 185) 90%);
+  	background-image: -moz-linear-gradient(rgb(124, 152, 215) 20%, rgb(94, 122, 185) 90%);
+  	background-image: -o-linear-gradient(rgb(124, 152, 215) 20%, rgb(94, 122, 185) 90%);
+  	background-image: linear-gradient(rgb(124, 152, 215) 20%, rgb(94, 122, 185) 90%);
+  	margin-top: 10px;
+  	padding: 4px;
+  	border: none;
+  	border-radius: 5px;
+}
+
+button:hover {
+	background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(20%, rgb(124, 152, 215)), color-stop(90%, rgb(94, 122, 185)));
+  	background-image: -webkit-linear-gradient(rgb(124, 152, 215) 20%, rgb(94, 122, 185) 90%);
+  	background-image: -moz-linear-gradient(rgb(124, 152, 215) 20%, rgb(94, 122, 185) 90%);
+  	background-image: -o-linear-gradient(rgb(124, 152, 215) 20%, rgb(94, 122, 185) 90%);
+  	background-image: linear-gradient(rgb(124, 152, 215) 20%, rgb(94, 122, 185) 90%);
+}
+
+button:active {
+	background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(20%, rgb(94, 122, 185)), color-stop(90%, rgb(124, 152, 215)));
+  	background-image: -webkit-linear-gradient(rgb(94, 122, 185) 20%, rgb(124, 152, 215) 90%);
+  	background-image: -moz-linear-gradient(rgb(94, 122, 185) 20%, rgb(124, 152, 215) 90%);
+  	background-image: -o-linear-gradient(rgb(94, 122, 185) 20%, rgb(124, 152, 215) 90%);
+  	background-image: linear-gradient(rgb(94, 122, 185) 20%, rgb(124, 152, 215) 90%);
+}

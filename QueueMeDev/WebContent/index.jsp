@@ -12,8 +12,6 @@
 		<a href="LogIn" style="float: right; display: block; height: 100%"><img src="images/fb-login.png" style="height: 100%" /></a>
 	</nav>
 	<main>
-	<div>
-	</div>
 	</main>
 </body>
 </html>
