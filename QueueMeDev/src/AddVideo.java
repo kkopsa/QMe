@@ -1,6 +1,10 @@
 
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,14 +30,29 @@ public class AddVideo extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		int userID;
+		String[] friendID;
+		String videoID;
+		
+		QueueDatabase qdb = new QueueDatabase();
+		
+		videoID = request.getParameter("videoId");
+		userID = (int) request.getSession().getAttribute("userId");
+		friendID = request.getParameterValues("friends");
+		
+		for (int i = 0; i < friendID.length; i++)
+		{
+			qdb.addVideo(userID, Integer.parseInt(friendID[i]), videoID);
+		}
+		
+		
 	}
 
 }

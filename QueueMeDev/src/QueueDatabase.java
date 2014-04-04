@@ -14,6 +14,57 @@ public class QueueDatabase {
 	public QueueDatabase() {
 		// default constructor
 	}
+	
+	public void addVideo(int pUserID, int pFriendID, String pVideoID) {
+		Connection conn = null;
+		Statement stmt = null;
+		try {
+			// STEP 2: Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+
+			// STEP 3: Open a connection
+			System.out.println("Connecting to database...");
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+			// STEP 3.5: Insert dummy data
+			System.out.println("Inserting row...");
+			stmt = conn.createStatement();
+			String insert;
+			insert = "INSERT INTO video (to_facebook_id, from_facebook_id, youtube_video_id, date_added, watched) VALUES ("
+					+ pUserID
+					+ ", "
+					+ pFriendID
+					+ ", \'"
+					+ pVideoID
+					+ "\', UTC_DATE(), 0)";
+			System.out.println(insert);
+			stmt.executeUpdate(insert);
+
+			// STEP 6: Clean-up environment
+			stmt.close();
+			conn.close();
+		} catch (SQLException se) {
+			// Handle errors for JDBC
+			se.printStackTrace();
+		} catch (Exception e) {
+			// Handle errors for Class.forName
+			e.printStackTrace();
+		} finally {
+			// finally block used to close resources
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException se2) {
+			}// nothing we can do
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}// end finally try
+		}// end try
+		System.out.println("Goodbye!");
+	}
 
 	public List<String> getVideoID(int pUserID, int pFriendID) {
 		Connection conn = null;
