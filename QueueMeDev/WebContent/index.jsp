@@ -5,7 +5,7 @@
 <head>
 <link rel="stylesheet" href="style/index.css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>YouQueueMe Demo Login</title>
+<title>QMe</title>
 </head>
 <body>
 	<nav>
