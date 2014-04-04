@@ -52,9 +52,9 @@
 				</ul>
 			</nav>
 		</div>
-		<form method="post" action="">
+		<form method="post" action="/QMe/AddVideo">
 			<input type="hidden" name="videoId" value="${v}">
-			<select name="friends[]" data-placeholder="Search Facebook Friends" style="width: 500px;" multiple class="chosen-select" tabindex="8">
+			<select name="friends" data-placeholder="Search Facebook Friends" style="width: 500px;" multiple class="chosen-select" tabindex="8">
 				<option value=""></option>
 				<c:forEach items="${friends}" var="friend">
 					<option value="${friend.id}">${friend.name}</option>

@@ -3,6 +3,7 @@
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -37,21 +38,36 @@ public class AddVideo extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int userID;
+		String userID;
 		String[] friendID;
 		String videoID;
 		
 		QueueDatabase qdb = new QueueDatabase();
 		
 		videoID = request.getParameter("videoId");
-		userID = (int) request.getSession().getAttribute("userId");
+		userID = (String) request.getSession().getAttribute("userId");
 		friendID = request.getParameterValues("friends");
+		List<String> friendList = new ArrayList<String>();
+		friendList = Arrays.asList(friendID);
 		
-		for (int i = 0; i < friendID.length; i++)
+		int size = friendID.length;
+		
+		System.out.println(size);
+		
+		for (int i = 0; i < size; i++)
 		{
-			qdb.addVideo(userID, Integer.parseInt(friendID[i]), videoID);
-		}
-		
+			try {
+			qdb.addVideo(Integer.parseInt(userID), 
+					Integer.parseInt(friendList.get(i)), 
+					videoID);
+			}
+			catch (NumberFormatException e)
+			{
+				e.printStackTrace();
+			}
+		}			
+			
+		response.sendRedirect("watch.jsp");
 		
 	}
 
