@@ -35,7 +35,7 @@ public class watch extends HttpServlet {
 		String videoId = request.getParameter("v");
 		if (videoId == null) {
 			// Use from to get the playlist from the database
-			int to = (int)request.getSession().getAttribute("userId");
+			String to = (String) request.getSession().getAttribute("userId");
 			String from = request.getParameter("from");
 			// Get the first video from the playlist and assign it to videoId
 			videoId = "jR4lLJu_-wE";

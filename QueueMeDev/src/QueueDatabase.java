@@ -1,16 +1,79 @@
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class QueueDatabase {
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	static final String DB_URL = "jdbc:mysql://localhost/qme";
+	static final String DB_URL = "jdbc:mysql://localhost/queue_me_dev";
 
-	static final String USER = "root";
-	static final String PASS = "";
+	static final String USER = "queue_admin";
+	static final String PASS = "googleorbust";
 
 	Connection conn = null;
 
 	public QueueDatabase() {
 		// default constructor
+	}
+	
+	public List<Integer> getFriendIDs(int pUserID) {
+		Connection conn = null;
+		Statement stmt = null;
+		List<Integer> friendsWithQueueID = new ArrayList<Integer>();
+		try {
+			// STEP 2: Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+
+			// STEP 3: Open a connection
+			System.out.println("Connecting to database...");
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+			// STEP 4: Execute a query
+			System.out.println("Creating statement...");
+			stmt = conn.createStatement();
+			String sql;
+			sql = "SELECT DISTINCT from_facebook_id FROM video";
+			System.out.println(sql);
+			ResultSet rs = stmt.executeQuery(sql);
+
+			// STEP 5: Extract data from result set
+
+			// Retrieve by column name
+			while(rs.next())
+			{
+				friendsWithQueueID.add(rs.getInt("from_facebook_id"));
+			}
+
+			// Display values
+			for (int i = 0; i < friendsWithQueueID.size(); i++)
+				System.out.println("FriendID: " + friendsWithQueueID.get(i));			
+
+			// STEP 6: Clean-up environment
+			rs.close();
+			stmt.close();
+			conn.close();			
+
+		} catch (SQLException se) {
+			// Handle errors for JDBC
+			se.printStackTrace();
+		} catch (Exception e) {
+			// Handle errors for Class.forName
+			e.printStackTrace();
+		} finally {
+			// finally block used to close resources
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException se2) {
+			}// nothing we can do
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}// end finally try
+		}// end try		
+		System.out.println("Goodbye!");		
+		return friendsWithQueueID;
 	}
 
 	public String getThumbnailVideoID(int pUserID, int pFriendID) {

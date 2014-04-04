@@ -28,10 +28,9 @@
 		</form>
 	</nav>
 <main>	
-	<script type="text/javascript">
-		showThumbnails();
-		otherFriends();
-	</script>	
+	<c:forEach items = "${friendID}" var = "ID">
+		<a href="/QMe/watch?from=${ID}">${ID}</a><br />
+	</c:forEach>
 </main>
 </body>
 </html>
