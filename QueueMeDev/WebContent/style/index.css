@@ -89,6 +89,22 @@ main .tile img {
 	width: 100%;
 }
 
+form {
+	
+}
+
+form > * {
+	float: left;
+  	margin-right: 10px;
+}
+
+form:after { 
+   content: " ";
+   display: block; 
+   height: 0; 
+   clear: both;
+}
+
 button {
 	color: white;
 	background-color: rgb(94, 122, 185);
@@ -99,16 +115,17 @@ button {
   	background-image: linear-gradient(rgb(124, 152, 215) 20%, rgb(94, 122, 185) 90%);
   	margin-top: 10px;
   	padding: 4px;
-  	border: none;
+  	border: 1px solid rgb(100, 100, 100);
   	border-radius: 5px;
+  	cursor: pointer;
 }
 
 button:hover {
-	background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(20%, rgb(124, 152, 215)), color-stop(90%, rgb(94, 122, 185)));
-  	background-image: -webkit-linear-gradient(rgb(124, 152, 215) 20%, rgb(94, 122, 185) 90%);
-  	background-image: -moz-linear-gradient(rgb(124, 152, 215) 20%, rgb(94, 122, 185) 90%);
-  	background-image: -o-linear-gradient(rgb(124, 152, 215) 20%, rgb(94, 122, 185) 90%);
-  	background-image: linear-gradient(rgb(124, 152, 215) 20%, rgb(94, 122, 185) 90%);
+	background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(20%, rgb(154, 182, 245)), color-stop(90%, rgb(94, 122, 185)));
+  	background-image: -webkit-linear-gradient(rgb(154, 182, 245) 20%, rgb(94, 122, 185) 90%);
+  	background-image: -moz-linear-gradient(rgb(154, 182, 245) 20%, rgb(94, 122, 185) 90%);
+  	background-image: -o-linear-gradient(rgb(154, 182, 245) 20%, rgb(94, 122, 185) 90%);
+  	background-image: linear-gradient(rgb(154, 182, 245) 20%, rgb(94, 122, 185) 90%);
 }
 
 button:active {
