@@ -10,7 +10,7 @@ function showThumbnails() {
 		friendName = "Kevin Kopsa"; // TODO get friends name based on ranking
 		friendName += "<br /></div>";
 		imagehtml = "<div class=\"tile\">";
-		imagehtml += "<a href=\"/QueueMeDev/watch?v=" + videoID + "\">";
+		imagehtml += "<a href=\"/QMe/watch?v=" + videoID + "\">";
 		imagehtml += "<img src=\"http://img.youtube.com/vi/" + videoID
 				+ "/hqdefault.jpg\">";
 		imagehtml += "</a><br />";
