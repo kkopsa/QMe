@@ -89,8 +89,11 @@ main .tile img {
 	width: 100%;
 }
 
-form {
-	
+main:after { 
+   content: " ";
+   display: block; 
+   height: 0; 
+   clear: both;
 }
 
 form > * {
