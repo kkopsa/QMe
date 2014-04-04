@@ -32,14 +32,18 @@ public class watch extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String videoId = request.getParameter("v");
+		String videoId = request.getParameter("v");		
 		if (videoId == null) {
+			QueueDatabase qdb = new QueueDatabase();
+			List<String> videoList = new ArrayList<String>();			
 			// Use from to get the playlist from the database
 			String to = (String) request.getSession().getAttribute("userId");
 			String from = request.getParameter("from");
+			videoList = qdb.getVideoID(Integer.parseInt(to), Integer.parseInt(from));
 			// Get the first video from the playlist and assign it to videoId
-			videoId = "jR4lLJu_-wE";
+			videoId = videoList.get(0);			
 			// Create a list to send to the jsp file
+			request.setAttribute("videos", videoList);
 		}
 		
 		ResponseList<Friend> friends = (ResponseList<Friend>)request.getSession().getAttribute("friends");
