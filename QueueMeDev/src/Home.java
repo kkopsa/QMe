@@ -32,28 +32,9 @@ public class Home extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		QueueDatabase qdb = new QueueDatabase();	
-		
-//		ArrayList<Playlist> playlists = new ArrayList<Playlist>();
-		
-		int userID = Integer.parseInt((String) request.getSession().getAttribute("userId"));
-//		int friendID = 1076890682;
-//		String videoID = "J---aiyznGQ";
-		
-		//qdb.testInsert(userID, friendID, videoID);
-		//qdb.testUpdate(userID, videoID);
-		//qdb.testSelect(userID);
-		//videoID = qdb.getThumbnailVideoID(userID, friendID);
-		
-		//request.getSession().setAttribute("v", videoID);
-		
-		List<Integer> friendsWithQueue = qdb.getFriendIDs(userID);
-		request.getSession().setAttribute("friendID", friendsWithQueue);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		
 		request.getRequestDispatcher("home.jsp").forward(request, response);
-		//response.sendRedirect(request.getContextPath() + "/home.jsp");
 		
 	}
 

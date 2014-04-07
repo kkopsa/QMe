@@ -57,9 +57,7 @@ public class AddVideo extends HttpServlet {
 		for (int i = 0; i < size; i++)
 		{
 			try {
-			qdb.addVideo(Integer.parseInt(userID), 
-					Integer.parseInt(friendList.get(i)), 
-					videoID);
+			qdb.addVideo(userID, friendList.get(i), videoID);
 			}
 			catch (NumberFormatException e)
 			{

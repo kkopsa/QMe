@@ -1,4 +1,8 @@
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,7 +34,10 @@ public class CallBack extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<User> userList = new ArrayList<User>();
+		QueueDatabase qdb = new QueueDatabase();	
+		Map<String, String> users = new HashMap<String, String>();		
 		
 		Facebook facebook = (Facebook)request.getSession().getAttribute("facebook");
 		String oauthCode = request.getParameter("code");
@@ -45,7 +52,27 @@ public class CallBack extends HttpServlet {
 		try {
 			String userID = facebook.getId();
 			ResponseList<Friend> friends = facebook.getFriends();
-			request.getSession().setAttribute("friends", friends);
+			for (int i = 0; i < friends.size(); i++) {				
+				users.put(friends.get(i).getId(), friends.get(i).getName());				
+			}			
+			
+			List<String> friendsWithQueue = qdb.getFriendIDs(userID);
+						
+			for (int i = 0; i < friendsWithQueue.size(); i++) {
+				if (users.containsKey(friendsWithQueue.get(i))) {
+					User newUser = new User(users.get(friendsWithQueue.get(i)), friendsWithQueue.get(i));
+					newUser.setThumbnail(userID);
+					userList.add(newUser);
+				}
+			}
+			
+			for (int i = 0; i < userList.size(); i++) {
+				System.out.println(userList.get(i).getUsername());
+				System.out.println(userList.get(i).getVideoID());
+			}
+			
+			request.getSession().setAttribute("friendTiles", userList);			
+			request.getSession().setAttribute("friends", friends);		
 			request.getSession().setAttribute("userId", userID);
 		} catch (IllegalStateException e) {
 			// TODO Auto-generated catch block

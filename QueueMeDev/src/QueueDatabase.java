@@ -13,9 +13,9 @@ public class QueueDatabase {
 
 	public QueueDatabase() {
 		// default constructor
-	}
+	}	
 	
-	public void addVideo(int pUserID, int pFriendID, String pVideoID) {
+	public void addVideo(String pUserID, String pFriendID, String pVideoID) {
 		Connection conn = null;
 		Statement stmt = null;
 		try {
@@ -31,9 +31,9 @@ public class QueueDatabase {
 			stmt = conn.createStatement();
 			String insert;
 			insert = "INSERT INTO video (to_facebook_id, from_facebook_id, youtube_video_id, date_added, watched) VALUES ("
-					+ pUserID
-					+ ", "
 					+ pFriendID
+					+ ", "
+					+ pUserID
 					+ ", \'"
 					+ pVideoID
 					+ "\', UTC_DATE(), 0)";
@@ -66,7 +66,7 @@ public class QueueDatabase {
 		System.out.println("Goodbye!");
 	}
 
-	public List<String> getVideoID(int pUserID, int pFriendID) {
+	public List<String> getVideoID(String pUserID, String pFriendID) {
 		Connection conn = null;
 		Statement stmt = null;
 		List<String> videoID = new ArrayList<String>();
@@ -132,10 +132,10 @@ public class QueueDatabase {
 	}
 
 	
-	public List<Integer> getFriendIDs(int pUserID) {
+	public List<String> getFriendIDs(String pUserID) {
 		Connection conn = null;
 		Statement stmt = null;
-		List<Integer> friendsWithQueueID = new ArrayList<Integer>();
+		List<String> friendsWithQueueID = new ArrayList<String>();
 		try {
 			// STEP 2: Register JDBC driver
 			Class.forName("com.mysql.jdbc.Driver");
@@ -148,7 +148,8 @@ public class QueueDatabase {
 			System.out.println("Creating statement...");
 			stmt = conn.createStatement();
 			String sql;
-			sql = "SELECT DISTINCT from_facebook_id FROM video";
+			sql = "SELECT DISTINCT from_facebook_id FROM video WHERE to_facebook_id="
+					+ pUserID;
 			System.out.println(sql);
 			ResultSet rs = stmt.executeQuery(sql);
 
@@ -157,7 +158,7 @@ public class QueueDatabase {
 			// Retrieve by column name
 			while(rs.next())
 			{
-				friendsWithQueueID.add(rs.getInt("from_facebook_id"));
+				friendsWithQueueID.add(rs.getString("from_facebook_id"));
 			}
 
 			// Display values
@@ -193,7 +194,7 @@ public class QueueDatabase {
 		return friendsWithQueueID;
 	}
 
-	public String getThumbnailVideoID(int pUserID, int pFriendID) {
+	public String getThumbnailVideoID(String pUserID, String pFriendID) {
 		Connection conn = null;
 		Statement stmt = null;
 		String videoID = new String();

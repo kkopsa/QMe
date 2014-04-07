@@ -28,8 +28,12 @@
 		</form>
 	</nav>
 <main>	
-	<c:forEach items = "${friendID}" var = "ID">
-		<a href="/QMe/watch?from=${ID}">${ID}</a><br />
+	<c:forEach items = "${friendTiles}" var = "friend">
+		<div class="tile">
+			<a href="/QMe/watch?from=${friend.id}">
+			<img src="http://img.youtube.com/vi/${friend.videoID}/hqdefault.jpg"><br />
+			${friend.username}</a>
+		</div>
 	</c:forEach>
 </main>
 </body>

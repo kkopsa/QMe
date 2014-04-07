@@ -39,7 +39,7 @@ public class watch extends HttpServlet {
 			// Use from to get the playlist from the database
 			String to = (String) request.getSession().getAttribute("userId");
 			String from = request.getParameter("from");
-			videoList = qdb.getVideoID(Integer.parseInt(to), Integer.parseInt(from));
+			videoList = qdb.getVideoID(to, from);
 			// Get the first video from the playlist and assign it to videoId
 			videoId = videoList.get(0);			
 			// Create a list to send to the jsp file
