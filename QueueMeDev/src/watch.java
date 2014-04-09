@@ -32,7 +32,7 @@ public class watch extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String videoId = request.getParameter("v");		
+		String videoId = request.getParameter("v");
 		if (videoId == null) {
 			QueueDatabase qdb = new QueueDatabase();
 			List<String> videoList = new ArrayList<String>();			
@@ -44,6 +44,9 @@ public class watch extends HttpServlet {
 			videoId = videoList.get(0);			
 			// Create a list to send to the jsp file
 			request.setAttribute("videos", videoList);
+			request.setAttribute("playlistEmpty", false);
+		} else {
+			request.setAttribute("playlistEmpty", true);
 		}
 		
 		ResponseList<Friend> friends = (ResponseList<Friend>)request.getSession().getAttribute("friends");

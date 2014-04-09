@@ -13,22 +13,37 @@
 	<script src="JS/search.js" type="text/javascript"></script>
 	<script src="JS/controls.js" type="text/javascript"></script>
 	<script src="JS/chosen.jquery.js" type="text/javascript"></script>
+	<script src="JS/sendVideo.js" type="text/javascript"></script>
 	<script>
 		$(document).ready(function() {
-			if ($("#player").children("nav").eq(0).children("ul").eq(0).children().length == 0) {
+			var empty = ${playlistEmpty};
+			if (empty) {
 				$("#player").addClass("empty");
 			}
 		});
 	</script>
+	<style>
+		body > nav {
+			padding-left: 8px;
+		}
+		body > nav a {
+			display: block;
+			margin-right: 12px;
+			width: 50px;
+			height: 100%;
+			float: left;
+		}
+	</style>
 </head>
 <body>
 	<nav>
+		<a href="/QMe/Home"></a>
 		<form id="search" onsubmit="search(); return false;">
 			<input type="search" id="searchString" placeholder="Search YouTube">
 		</form>
 	</nav>
 	<main>
-		<div id="player" class="empty">
+		<div id="player">
 			<div id="video"></div>
 			<script type="text/javascript">
 				var video = "${v}";
@@ -46,15 +61,15 @@
 			</script>
 			<nav>
 				<ul>
-					<!-- <li><span onclick="load('y2M8BbTfZTA')">An Unexpected Journey</span></li>
-					<li><span onclick="load('OPVWy1tFXuc')">Desolation of Smaug</span></li>
-					<li><span onclick="load('mllXxyHTzfg')">I See Fire</span></li> -->
+					<c:forEach items="${videos}" var="video">
+						<li><span onclick="load('${video}')">${video}</span></li>
+					</c:forEach>
 				</ul>
 			</nav>
 		</div>
-		<form method="post" action="/QMe/AddVideo">
-			<input type="hidden" name="videoId" value="${v}">
-			<select name="friends" data-placeholder="Search Facebook Friends" style="width: 500px;" multiple class="chosen-select" tabindex="8">
+		<form onsubmit="sendVideo(); return false;">
+			<input id="videoId" type="hidden" name="videoId" value="${v}">
+			<select id="friends" name="friends" data-placeholder="Search Facebook Friends" style="width: 500px;" multiple class="chosen-select" tabindex="8">
 				<option value=""></option>
 				<c:forEach items="${friends}" var="friend">
 					<option value="${friend.id}">${friend.name}</option>

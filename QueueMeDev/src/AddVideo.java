@@ -41,14 +41,14 @@ public class AddVideo extends HttpServlet {
 		String userID;
 		String[] friendID;
 		String videoID;
+		String videoTitle;
 		
 		QueueDatabase qdb = new QueueDatabase();
 		
 		videoID = request.getParameter("videoId");
 		userID = (String) request.getSession().getAttribute("userId");
-		friendID = request.getParameterValues("friends");
-		List<String> friendList = new ArrayList<String>();
-		friendList = Arrays.asList(friendID);
+		friendID = request.getParameterValues("friends[]");
+		videoTitle = request.getParameter("videoTitle");		
 		
 		int size = friendID.length;
 		
@@ -57,7 +57,7 @@ public class AddVideo extends HttpServlet {
 		for (int i = 0; i < size; i++)
 		{
 			try {
-			qdb.addVideo(userID, friendList.get(i), videoID);
+			qdb.addVideo(userID, friendID[i], videoID, videoTitle);
 			}
 			catch (NumberFormatException e)
 			{

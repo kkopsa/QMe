@@ -1,7 +1,7 @@
 function search() {
 	var search = $("#searchString").val();
 	search = search.replace(/\s/g, '+');
-	var url = 'https://www.googleapis.com/youtube/v3/search?type=video&part=snippet&maxResults=50&q=' + search + '&key=AIzaSyA7T3yRlSmoQaQGF76eX6ULtxVQjkzkRDY';
+	var url = 'https://www.googleapis.com/youtube/v3/search?type=video&part=snippet&maxResults=50&q=' + search + '&key=AIzaSyASNhaeu2hjaS8Pckm4SzuNGPQVkMW2N7I';
 	
 	$.getJSON(url)
 		.done(function(json) {

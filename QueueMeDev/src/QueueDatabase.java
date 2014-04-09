@@ -4,7 +4,7 @@ import java.util.List;
 
 public class QueueDatabase {
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	static final String DB_URL = "jdbc:mysql://localhost/queue_me_dev";
+	static final String DB_URL = "jdbc:mysql://localhost/qme";
 
 	static final String USER = "queue_admin";
 	static final String PASS = "googleorbust";
@@ -15,7 +15,7 @@ public class QueueDatabase {
 		// default constructor
 	}	
 	
-	public void addVideo(String pUserID, String pFriendID, String pVideoID) {
+	public void addVideo(String pUserID, String pFriendID, String pVideoID, String pVideoTitle) {
 		Connection conn = null;
 		Statement stmt = null;
 		try {
@@ -30,12 +30,14 @@ public class QueueDatabase {
 			System.out.println("Inserting row...");
 			stmt = conn.createStatement();
 			String insert;
-			insert = "INSERT INTO video (to_facebook_id, from_facebook_id, youtube_video_id, date_added, watched) VALUES ("
+			insert = "INSERT INTO video (to_facebook_id, from_facebook_id, youtube_video_id, youtube_video_title, date_added, watched) VALUES ("
 					+ pFriendID
 					+ ", "
 					+ pUserID
 					+ ", \'"
 					+ pVideoID
+					+ "\', \'"
+					+ pVideoTitle
 					+ "\', UTC_DATE(), 0)";
 			System.out.println(insert);
 			stmt.executeUpdate(insert);
