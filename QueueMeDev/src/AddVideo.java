@@ -1,5 +1,4 @@
 
-
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -18,55 +17,54 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/AddVideo")
 public class AddVideo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AddVideo() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public AddVideo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		String userID;
 		String[] friendID;
 		String videoID;
 		String videoTitle;
-		
+
 		QueueDatabase qdb = new QueueDatabase();
-		
+
 		videoID = request.getParameter("videoId");
 		userID = (String) request.getSession().getAttribute("userId");
 		friendID = request.getParameterValues("friends[]");
-		videoTitle = request.getParameter("videoTitle");		
-		
+		videoTitle = request.getParameter("videoTitle");
+
 		int size = friendID.length;
-		
-		System.out.println(size);
-		
-		for (int i = 0; i < size; i++)
-		{
+
+		for (int i = 0; i < size; i++) {
 			try {
-			qdb.addVideo(userID, friendID[i], videoID, videoTitle);
-			}
-			catch (NumberFormatException e)
-			{
+				qdb.addVideo(userID, friendID[i], videoID, videoTitle);
+			} catch (NumberFormatException e) {
 				e.printStackTrace();
 			}
-		}			
-			
+		}
+
 		response.sendRedirect("watch.jsp");
-		
+
 	}
 
 }
