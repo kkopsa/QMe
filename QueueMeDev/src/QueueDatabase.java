@@ -3,11 +3,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QueueDatabase {
-	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	static final String DB_URL = "jdbc:mysql://localhost/qme";
-
-	static final String USER = "queue_admin";
-	static final String PASS = "googleorbust";
 
 	public QueueDatabase() {
 		// default constructor
